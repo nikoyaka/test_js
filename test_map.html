@@ -1,0 +1,36 @@
+<html>
+
+<body>
+
+<script>
+// initial array
+arr = [10,11,25];
+
+anotherArr = [0,10,20, 30];
+
+Array.prototype.map = function (callback, thisArg = this){
+	var arr = thisArg;
+	var newArr = [];
+	for  (var index = 0; index < arr.length; index++){
+		newArr[index] = callback(arr[index], index, arr);
+	}
+	return newArr;
+}
+
+function addOne(elem, index, arr){
+	return elem+1;
+}
+
+// get new array by means of map()
+newArr = arr.map(addOne);
+
+console.log(newArr);
+
+// get new array by means of map() applaying to "anotherArr" instead of initial array "arr"
+newArr = arr.map(addOne, anotherArr);
+
+console.log(newArr);
+</script>
+
+</body>
+</html>
