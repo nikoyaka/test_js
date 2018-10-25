@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Books API</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	</head>
+	<body>
+		<script>
+			var url = "https://api.nytimes.com/svc/books/v3/lists/overview.json";
+			url += '?' + $.param({
+			  'published_date': "2018-11-04",
+			  'api-key': "e59fe262860242658e3f5c3ad599f873"
+			});
+			$.ajax({
+			  url: url,
+			  method: 'GET',
+			}).done(function(result) {
+			  result.results.lists.forEach((elem, i) => {
+				console.log(++i, "	Display name: ", elem.display_name, "	books_count: ", elem.books.length)
+			  })
+			}).fail(function(err) {
+			  throw err;
+			});
+		</script>
+	</body>
+</html>
